@@ -1,7 +1,8 @@
 import UIKit
 import Foundation
-
-round(Double((10*2)/3))
+print(100%3)
+round(203302892857.4286)
+Int(203302892857.4286)
 
 // There is a string, , of lowercase English letters that is repeated infinitely many times. Given an integer, , find and print the number of letter a's in the first  letters of the infinite string.
 
@@ -54,5 +55,55 @@ round(Double((10*2)/3))
 // Complete the repeatedString function below.
 
 
-var input: String = "aba"
-repeatedString(s: input, n: 10)
+func repeatedString(s: String, n: Int) -> Int {
+    
+    var count = 0
+
+    for character in s.enumerated() {
+        count += character.element == "a" ? 1 : 0
+    }
+
+    func getTheRestOfAs(_ rest: Int) -> Int {
+        print("rest: \(rest)")
+        var count = 0
+        var iteration = 0
+        for character in s.enumerated() {
+            print("iteration < rest : \(iteration) < \(rest)")
+            if iteration < rest {
+                count += character.element == "a" ? 1 : 0
+                iteration += 1
+                print("iteration += 1 : \(iteration)")
+            } else { break }
+        }
+        return count
+    }
+
+    if count == s.count {
+        return n
+    } else {
+        count = (n/s.count) * count + getTheRestOfAs(n % s.count)
+    }
+    return count
+}
+
+
+
+
+var input3: String = "aba"
+repeatedString(s: input3, n: 10)
+
+
+
+
+var input: String = "afcfffaged"
+repeatedString(s: input, n: 962645758455) //192529151691
+
+var input1: String = "bab"
+repeatedString(s: input1, n: 725261545450) //241753848483
+
+var input2: String = "beeaabc"
+repeatedString(s: input2, n: 711560125001) //203302892858
+
+let i = round(6.66)
+
+let l = round(6.46)
